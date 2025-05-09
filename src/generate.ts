@@ -2,11 +2,11 @@ import fs from "fs";
 import path from "path";
 import { glob } from "glob";
 import type { Options } from "./types";
-const createIconCom = (files: string[]) => {
-  const components = files.map((file) => {
-    const name = path.basename(file, ".svg");
-    return `${name}:defineAsyncComponent(()=>import('../Icons/${name}.vue'))`;
-  });
+const createIconCom = (files: string[], dir: string) => {
+  // 修正：确保 glob 路径以/开头
+  const normalizedDir = dir.startsWith("/") ? dir : `/${dir}`;
+  const enter = normalizedDir.endsWith("/") ? normalizedDir : normalizedDir + "/";
+
   // 生成Icon包装组件
   const iconComponent = `
     <script setup>
@@ -15,16 +15,15 @@ const createIconCom = (files: string[]) => {
     const props = defineProps({
       name: { type: String, required: true }
     })
-
-    const components = {${components.join(",")}}
-    // console.log(components)
+    const modules = import.meta.glob('${enter}*.vue', { eager: false })
+    const icons = {};
+    Object.keys(modules).forEach(key => {
+      const componentName = key.split('/').pop().replace('.vue', '')
+      icons[componentName] = modules[key]
+    })
     const iconComponent = computed(() => {
-      // const componentName = props.name.replace(/(^|-)(\\w)/g, (_, __, c) => c.toUpperCase())
       const componentName = props.name;
-      // const path = \`./Icons/\${componentName}.vue\`;
-      //   console.log(path,componentName)
-      // ? defineAsyncComponent(components[path]) :
-      return components[componentName] ?? null;
+      return defineAsyncComponent(icons[componentName]) ?? null;
     })
     // console.log(iconComponent.value)
     </script>
@@ -74,9 +73,9 @@ export function generateComponents({ enter = "src/assets/Icons", iconsOutput = "
       fs.writeFileSync(componentPath, component);
     }
   });
-  const iconComponent = createIconCom(files);
+  const iconComponent = createIconCom(files, iconsOutput);
   const iconDir = path.resolve(iconOutput);
   if (!fs.existsSync(iconDir)) fs.mkdirSync(iconDir, { recursive: true });
-  fs.writeFileSync(path.join(iconDir, "Icon.vue"), iconComponent);
+  fs.writeFileSync(path.join(iconDir, "Icon/Icon.vue"), iconComponent);
 }
 export default generateComponents;
