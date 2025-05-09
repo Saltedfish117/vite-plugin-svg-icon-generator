@@ -1,0 +1,39 @@
+{
+  "name": "vite-plugin-svg-icon-generator",
+  "version": "1.0.0",
+  "description": "create svg icon component",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "vite": "^5.0.0"
+  },
+  "keywords": [
+    "vite",
+    "plugin",
+    "svg",
+    "icon",
+    "generator",
+    "component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourname/vite-plugin-example.git"
+  },
+  "author": "Salt fish",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}
