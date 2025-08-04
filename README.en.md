@@ -106,4 +106,4 @@ Please ensure your code adheres to the project's coding style and add appropriat
 
 ## 📄 License
 
-This project is open source under the [MIT License](/D:/zlf/my/vite-plugin-svg-icon-generator/LICENSE).
+This project is open source under the [MIT License](./LICENSE).
