@@ -18,7 +18,9 @@
   ],
   "scripts": {
     "build": "tsup",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "lint": "eslint --ext .ts,.tsx,.vue,.js,.jsx src --fix",
+    "postinstall": "simple-git-hooks"
   },
   "peerDependencies": {
     "vite": "^5.0.0"
@@ -36,10 +38,26 @@
     "url": "https://github.com/Saltedfish117/vite-plugin-svg-icon-generator.git"
   },
   "author": "Salt fish",
-  "license": "ISC",
+  "license": "MIT",
   "type": "module",
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,vue,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{md,json}": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
+    "@antfu/eslint-config": "^5.1.0",
     "@types/node": "^22.15.17",
+    "eslint": "^9.32.0",
+    "lint-staged": "^16.1.4",
+    "simple-git-hooks": "^2.13.1",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",
     "vite": "^6.3.5"
