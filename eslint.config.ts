@@ -30,8 +30,13 @@ export default defineConfig([
       "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     },
   },
-  tseslint.configs.recommended,
   { files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
   { files: ["**/*.jsonc"], plugins: { json }, language: "json/jsonc", extends: ["json/recommended"] },
   { files: ["**/*.md"], plugins: { markdown }, language: "markdown/gfm", extends: ["markdown/recommended"] },
+  // @ts-expect-error 这个问题的根源在于 ESLint 内置类型与 typescript-eslint 插件使用的类型之间存在差异。具体表现为：
+  // 1,类型系统无法正确识别 tseslint.configs.recommended 返回的配置对象
+  // 2,配置对象中的 languageOptions 属性类型不匹配
+  // 3,解析器相关类型定义存在冲突
+  // https://blog.gitcode.com/31d959bf970e71efde19a09a24fa6174.html
+  ...tseslint.configs.recommended,
 ]);
