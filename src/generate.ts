@@ -2,44 +2,11 @@ import fs from "fs";
 import path from "path";
 import { glob } from "glob";
 import type { Options } from "./types";
-// const createIconCom = (files: string[], dir: string) => {
-//   // 修正：确保 glob 路径以/开头
-//   const normalizedDir = dir.startsWith("/") ? dir : `/${dir}`;
-//   const enter = normalizedDir.endsWith("/") ? normalizedDir : normalizedDir + "/";
-
-//   // 生成Icon包装组件
-//   const iconComponent = `
-//     <script setup>
-//     import { defineAsyncComponent, computed } from 'vue'
-
-//     const props = defineProps({
-//       name: { type: String, required: true }
-//     })
-//     const modules = import.meta.glob('${enter}*.vue', { eager: false })
-//     const icons = {};
-//     Object.keys(modules).forEach(key => {
-//       const componentName = key.split('/').pop().replace('.vue', '')
-//       icons[componentName] = modules[key]
-//     })
-//     const iconComponent = computed(() => {
-//       const componentName = props.name;
-//       return defineAsyncComponent(icons[componentName]) ?? null;
-//     })
-//     // console.log(iconComponent.value)
-//     </script>
-
-//     <template>
-//       <component :is="iconComponent" v-if="iconComponent" />
-//     </template>
-//       `.trim();
-//   return iconComponent;
-// };
-export function generateComponents(options: Options) {
+export async function generateComponents(options: Options) {
   // 创建目标目录
   const iconsDir = path.resolve(options.output);
   const svgDir = path.resolve(options.enter);
   const globPattern = path.join(svgDir, "**", "*.svg");
-
   async function run() {
     // 创建输出目录
     await fs.promises.mkdir(iconsDir, { recursive: true });
@@ -82,6 +49,6 @@ export function generateComponents(options: Options) {
       })
     );
   }
-  run();
+  return run();
 }
 export default generateComponents;

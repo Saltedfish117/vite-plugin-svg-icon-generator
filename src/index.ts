@@ -16,8 +16,12 @@ export default function vitePluginSvgIconGenerator(options: Options): Plugin {
         .on("change", updateComponents)
         .on("unlink", updateComponents);
     },
-    buildStart() {
-      generateComponents(options);
+    async buildStart() {
+      try {
+        await generateComponents(options);
+      } catch (error) {
+        console.error("vite-plugin-svg-icon-generator build error:", error);
+      }
     },
   };
 }
