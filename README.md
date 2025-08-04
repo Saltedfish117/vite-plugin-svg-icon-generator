@@ -1,5 +1,7 @@
 # vite-plugin-svg-icon-generator
 
+[English README](README.en.md)
+
 ## 🚀安装
 ```
 npm install vite-plugin-svg-icon-generator -D
