@@ -89,3 +89,21 @@ import SettingsIcon from '@/components/Icons/Settings.vue'
 - SVG files should be kept simple, avoiding overly complex styles and scripts
 - Generated components support passing standard HTML attributes (such as `class`, `style`, `width`, `height`, etc.)
 - If using in a TypeScript project, ensure correct type declarations are configured
+
+## 🤝 Contribution Guidelines
+
+Contributions of any kind are welcome! If you'd like to contribute to this project, please follow these steps:
+
+1. ** Fork the repository **: Click the "Fork" button in the top right corner of the repository page
+2. ** Clone the repository **: `git clone https://github.com/your-username/vite-plugin-svg-icon-generator.git`
+3. ** Create a branch **: `git checkout -b feature/your-feature-name`
+4. ** Make changes **: Implement your feature or fix bugs
+5. ** Commit changes **: `git commit -m 'Add some feature'`
+6. ** Push branch **: `git push origin feature/your-feature-name`
+7. ** Create a Pull Request **: Submit a PR on the GitHub page
+
+Please ensure your code adheres to the project's coding style and add appropriate tests if applicable.
+
+## 📄 License
+
+This project is open source under the [MIT License](/D:/zlf/my/vite-plugin-svg-icon-generator/LICENSE).
