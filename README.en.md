@@ -1,5 +1,26 @@
 # vite-plugin-svg-icon-generator
 
+<div align="center">
+
+![Vue](https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=flat-square&logo=vue.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.x-3178C6?style=flat-square&logo=typescript)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![NPM Version](https://img.shields.io/npm/v/vite-plugin-svg-icon-generator?style=flat-square)
+![NPM Downloads](https://img.shields.io/npm/dm/vite-plugin-svg-icon-generator?style=flat-square)
+
+SVG Icon Generator plugin that provides the functionality to automatically generate icon components.
+
+</div>
+
+<div align="center">
+  <a href="https://gitee.com/salted-fish-333/vite-plugin-svg-icon-generator" target="_blank">
+    <img src="https://gitee.com/salted-fish-333/vite-plugin-svg-icon-generator/badge/star.svg?theme=dark" alt="Gitee star" />
+  </a>
+  <a href="https://github.com/Saltedfish117/vite-plugin-svg-icon-generator" target="_blank">
+    <img src="https://img.shields.io/github/stars/Saltedfish117/vite-plugin-svg-icon-generator?style=social" alt="GitHub star" />
+  </a>
+</div>
+
 [中文 README](README.md)
 
 ## 🚀 Installation
